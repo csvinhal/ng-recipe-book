@@ -3,33 +3,39 @@ import { HttpClient } from '@angular/common/http';
 import { RecipeService } from '../recipes/recipe.service';
 import { Recipe } from '../recipes/recipes.model';
 import 'rxjs/Rx';
+import { AuthService } from '../auth/auth.service';
 
 @Injectable()
 export class DataStorageService {
 
   private URL = 'https://ng-recipe-book-a8120.firebaseio.com/';
 
-  constructor(private http: HttpClient, private recipeService: RecipeService) { }
+  constructor(private http: HttpClient,
+    private recipeService: RecipeService,
+    private authService: AuthService) { }
 
   storeRecipes() {
-    return this.http.put(`${this.URL}/recipes.json`, this.recipeService.getRecipes());
+    const token = this.authService.getToken();
+    return this.http.put(`${this.URL}/recipes.json?auth=${token}`, this.recipeService.getRecipes());
   }
 
   getRecipes() {
-    return this.http.get(`${this.URL}/recipes.json`).map(
+    const token = this.authService.getToken();
+
+    return this.http.get(`${this.URL}/recipes.json?auth=${token}`).map(
       (recipes: Recipe[]) => {
         recipes.forEach((recipe: Recipe) => {
-          if(!recipe['ingredients']) {
+          if (!recipe['ingredients']) {
             recipe['ingredients'] = [];
           }
         });
         return recipes;
       }
     )
-    .subscribe(
-      (recipes: Recipe[]) => {
-        this.recipeService.setRecipes(recipes);
-      }
-    );
+      .subscribe(
+        (recipes: Recipe[]) => {
+          this.recipeService.setRecipes(recipes);
+        }
+      );
   }
 }
