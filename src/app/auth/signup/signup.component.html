@@ -3,13 +3,13 @@
     <form (ngSubmit)="onSignUp(f)" #f="ngForm">
       <div class="form-group">
         <label for="email">Mail</label>
-        <input class="form-control" type="email" id="email" name="email" ngModel>
+        <input class="form-control" type="email" id="email" name="email" ngModel required>
       </div>
       <div class="form-group">
-        <label for="password">Mail</label>
-        <input class="form-control" type="password" id="password" name="password" ngModel>
+        <label for="password">Password</label>
+        <input class="form-control" type="password" id="password" name="password" ngModel required>
       </div>
-      <button class="btn btn-primary">Sign Up</button>
+      <button class="btn btn-primary" type="submit" [disabled]="!f.valid">Sign Up</button>
     </form>
   </div>
 </div>
