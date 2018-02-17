@@ -18,6 +18,8 @@ import { ShoppingListService } from './shopping-list/shopping-list.service';
 import { AppRoutingModule } from './app-rounting.module';
 import { RecipeService } from './recipes/recipe.service';
 import { DataStorageService } from './shared/data-store.service';
+import { SignupComponent } from './auth/signup/signup.component';
+import { AuthService } from './auth/auth.service';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,7 @@ import { DataStorageService } from './shared/data-store.service';
     RecipeEditComponent,
     ShoppingListComponent,
     ShoppingEditComponent,
+    SignupComponent,
     DropdownDirective
   ],
   imports: [
@@ -43,7 +46,8 @@ import { DataStorageService } from './shared/data-store.service';
   providers: [
     ShoppingListService, 
     RecipeService,
-    DataStorageService
+    DataStorageService,
+    AuthService
   ],
   bootstrap: [AppComponent]
 })
