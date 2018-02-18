@@ -11,10 +11,12 @@ const recipesRoutes: Routes = [
   {
     path: '',
     component: RecipesComponent,
+    canActivate: [AuthGuard],
     children: [
       {
         path: '',
-        component: RecipeStartComponent
+        component: RecipeStartComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'new',

@@ -27,13 +27,7 @@ import { CoreModule } from './core/core.module';
     AppRoutingModule,
     CoreModule
   ],
-  providers: [
-    ShoppingListService,
-    RecipeService,
-    DataStorageService,
-    AuthService,
-    AuthGuard
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
