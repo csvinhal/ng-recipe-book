@@ -22,20 +22,19 @@ export class DataStorageService {
   getRecipes() {
     const token = this.authService.getToken();
 
-    return this.http.get(`${this.URL}/recipes.json?auth=${token}`).map(
-      (recipes: Recipe[]) => {
-        recipes.forEach((recipe: Recipe) => {
-          if (!recipe['ingredients']) {
-            recipe['ingredients'] = [];
-          }
-        });
-        return recipes;
-      }
-    )
-      .subscribe(
-        (recipes: Recipe[]) => {
-          this.recipeService.setRecipes(recipes);
+    return this.http.get<Recipe[]>(`${this.URL}/recipes.json?auth=${token}`)
+      .map(
+        recipes => {
+          recipes.forEach((recipe: Recipe) => {
+            if (!recipe['ingredients']) {
+              recipe['ingredients'] = [];
+            }
+          });
+          return recipes;
         }
+      )
+      .subscribe(
+        recipes => this.recipeService.setRecipes(recipes)
       );
   }
 }
