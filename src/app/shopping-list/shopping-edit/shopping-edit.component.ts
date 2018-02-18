@@ -13,7 +13,7 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
 
   @ViewChild('f') shoppingListForm: NgForm;
   private subscriptionStartedEditing: Subscription;
-  private editMode: boolean;
+  editMode: boolean;
   private editedItemIndex: number;
   private editedItem: Ingredient;
 
