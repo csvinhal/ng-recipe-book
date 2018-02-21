@@ -1,8 +1,8 @@
-import { Recipe } from "./recipes.model";
-import { Injectable } from "@angular/core";
-import { Ingredient } from "../shared/ingredients.model";
-import { ShoppingListService } from "../shopping-list/shopping-list.service";
-import { Subject } from "rxjs/Subject";
+import { Recipe } from './recipes.model';
+import { Injectable } from '@angular/core';
+import { Ingredient } from '../shared/ingredients.model';
+import { Subject } from 'rxjs/Subject';
+import { Store } from '@ngrx/store';
 
 @Injectable()
 export class RecipeService {
@@ -10,7 +10,7 @@ export class RecipeService {
 
   private recipes: Recipe[] = [
     new Recipe(
-      'A  Test Recipe', 'This is a simply a test', 
+      'A  Test Recipe', 'This is a simply a test',
       'http://maxpixel.freegreatpicture.com/static/photo/1x/Meat-Power-Recipe-Food-Dishes-Pork-1459693.jpghttp://maxpixel.freegreatpicture.com/static/photo/1x/Meat-Power-Recipe-Food-Dishes-Pork-1459693.jpg',
       [
         new Ingredient('Meat', 1),
@@ -18,16 +18,16 @@ export class RecipeService {
       ]
     ),
     new Recipe(
-      'A  Test Recipe', 'This is a simply a test', 
+      'A  Test Recipe', 'This is a simply a test',
       'http://maxpixel.freegreatpicture.com/static/photo/1x/Meat-Power-Recipe-Food-Dishes-Pork-1459693.jpghttp://maxpixel.freegreatpicture.com/static/photo/1x/Meat-Power-Recipe-Food-Dishes-Pork-1459693.jpg',
       [
         new Ingredient('Burns', 2),
         new Ingredient('Meat', 1)
       ]
-  )
+    )
   ];
 
-  constructor(private shoppingListService: ShoppingListService) { }
+  constructor() { }
 
   setRecipes(recipes: Recipe[]) {
     this.recipes = recipes;
@@ -40,10 +40,6 @@ export class RecipeService {
 
   getRecipe(id: number) {
     return this.recipes.slice()[id];
-  }
-
-  addIngredientsToShoppingList(ingredients: Ingredient[]) {
-    this.shoppingListService.addIngredients(ingredients);
   }
 
   addRecipe(recipe: Recipe) {
