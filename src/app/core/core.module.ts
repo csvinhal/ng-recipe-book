@@ -7,7 +7,6 @@ import { SharedModule } from './../shared/shared.module';
 import { AppRoutingModule } from './../app-rounting.module';
 import { RecipeService } from '../recipes/recipe.service';
 import { DataStorageService } from '../shared/data-store.service';
-import { AuthService } from '../auth/auth.service';
 import { AuthGuard } from '../auth/auth-guard.service';
 import { AuthInterceptor } from '../shared/auth.interceptor';
 import { LoginInterceptor } from '../shared/login.interceptor';
@@ -28,7 +27,6 @@ import { LoginInterceptor } from '../shared/login.interceptor';
   providers: [
     RecipeService,
     DataStorageService,
-    AuthService,
     AuthGuard,
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: LoginInterceptor, multi: true}

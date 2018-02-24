@@ -7,13 +7,14 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-rounting.module';
 import { RecipeService } from './recipes/recipe.service';
 import { DataStorageService } from './shared/data-store.service';
-import { AuthService } from './auth/auth.service';
 import { AuthGuard } from './auth/auth-guard.service';
 import { SharedModule } from './shared/shared.module';
 import { ShoppingListModule } from './shopping-list/shopping-list.module';
 import { AuthModule } from './auth/auth.module';
 import { CoreModule } from './core/core.module';
 import { reducers } from './store/app.reducers';
+import { EffectsModule } from '@ngrx/effects';
+import { AuthEffects } from './auth/store/auth.effects';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { reducers } from './store/app.reducers';
     AppRoutingModule,
     CoreModule,
     StoreModule.forRoot(reducers),
+    EffectsModule.forRoot([AuthEffects]),
   ],
   providers: [],
   bootstrap: [AppComponent]
