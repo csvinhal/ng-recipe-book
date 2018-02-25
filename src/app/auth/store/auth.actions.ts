@@ -10,13 +10,13 @@ export const SET_TOKEN = 'SET_TOKEN';
 export class TrySignup implements Action {
   readonly type = TRY_SIGNUP;
 
-  constructor(public payload: { username: string, password: string }) { }
+  constructor(public payload: {username: string, password: string}) {}
 }
 
 export class TrySignin implements Action {
   readonly type = TRY_SIGNIN;
 
-  constructor(public payload: { username: string, password: string }) { }
+  constructor(public payload: {username: string, password: string}) {}
 }
 
 export class Signup implements Action {
@@ -34,7 +34,7 @@ export class Logout implements Action {
 export class SetToken implements Action {
   readonly type = SET_TOKEN;
 
-  constructor(public payload: string) { }
+  constructor(public payload: string) {}
 }
 
-export type AuthActions = Signup | Signin | Logout | SetToken | TrySignup;
+export type AuthActions = Signup | Signin | Logout | SetToken | TrySignup | TrySignin;

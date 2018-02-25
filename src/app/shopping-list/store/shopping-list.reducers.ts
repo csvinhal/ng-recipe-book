@@ -1,15 +1,14 @@
-import { Action } from '@ngrx/store';
-import { Ingredient } from '../../shared/ingredients.model';
 import * as ShoppingListActions from './shopping-list.actions';
+
+import { Ingredient } from '../../shared/ingredients.model';
 
 export interface State {
   ingredients: Ingredient[];
   editedIngredient: Ingredient;
   editedIngredientIndex: number;
-
 }
 
-const initialState = {
+const initialState: State = {
   ingredients: [
     new Ingredient('Apples', 5),
     new Ingredient('Tomatoes', 10),
@@ -23,16 +22,12 @@ export function shoppingListReducer(state = initialState, action: ShoppingListAc
     case ShoppingListActions.ADD_INGREDIENT:
       return {
         ...state,
-        ingredients: [
-          ...state.ingredients, action.payload
-        ]
+        ingredients: [...state.ingredients, action.payload]
       };
     case ShoppingListActions.ADD_INGREDIENTS:
       return {
         ...state,
-        ingredients: [
-          ...state.ingredients, ...action.payload
-        ]
+        ingredients: [...state.ingredients, ...action.payload]
       };
     case ShoppingListActions.UPDATE_INGREDIENT:
       const ingredient = state.ingredients[state.editedIngredientIndex];
@@ -58,7 +53,7 @@ export function shoppingListReducer(state = initialState, action: ShoppingListAc
         editedIngredientIndex: -1
       };
     case ShoppingListActions.START_EDIT:
-      const editedIngredient = {...state.ingredients[action.payload]};
+      const editedIngredient = { ...state.ingredients[action.payload] };
       return {
         ...state,
         editedIngredient: editedIngredient,
